@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Advice from './Advice';
+import axios from 'axios';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [advice, setAdvice] = useState('');
+  const [num, setNum] = useState('');
+
+  const fetchData = async () => {
+    const data = await axios.get('https://api.adviceslip.com/advice');
+    const response = data.data.slip.advice;
+    const dataId = data.data.slip.id;
+    setAdvice(response);
+    setNum(dataId);
+
+    return response;
+  };
+
+  return <Advice advice={advice} num={num} fetchData={fetchData} />;
 }
 
 export default App;
