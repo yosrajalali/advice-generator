@@ -11,3 +11,5 @@ This easy to use advice generator app will let you generate a random piece of ad
 - Flexbox
 - React.js
 - Advice slip Api
+
+###live demo:https://yosrajalali.github.io/advice-generator/
